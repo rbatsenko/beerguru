@@ -8,8 +8,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 export const store = createStore(mainReducer);
-const listenStore = () => console.log(store.getState());
-store.subscribe(listenStore);
 
 const Root = () => (
   <Provider store={store}>

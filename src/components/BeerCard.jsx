@@ -9,15 +9,16 @@ import { connect } from 'react-redux';
 const BeerCard = props => {
   const { classes, name, tagline, image_url } = props;
 
-  const openModal = (id, name, tagline, image_url, ibu, abv, ebc) => {
+  const openModal = (id, name, tagline, image_url, ibu, abv, brewers_tips, food_pairing) => {
     id = props.id;
     name = props.name;
     tagline = props.tagline;
     image_url = props.image_url;
     ibu = props.ibu;
     abv = props.abv;
-    ebc = props.ebc;
-    props.openModal(id, name, tagline, image_url, ibu, abv, ebc);
+    brewers_tips = props.brewers_tips;
+    food_pairing = props.food_pairing;
+    props.openModal(id, name, tagline, image_url, ibu, abv, brewers_tips, food_pairing);
   }
 
   return (
@@ -47,7 +48,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  openModal: (id, name, tagline, image_url, ibu, abv, ebc) => dispatch({
+  openModal: (id, name, tagline, image_url, ibu, abv, brewers_tips, food_pairing) => dispatch({
     type: 'OPEN_MODAL',
     id: id,
     name: name,
@@ -55,7 +56,8 @@ const mapDispatchToProps = dispatch => ({
     image_url: image_url,
     ibu: ibu,
     abv: abv,
-    ebc: ebc,
+    brewers_tips: brewers_tips,
+    food_pairing: food_pairing,
   })
 });
 

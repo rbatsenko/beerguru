@@ -22,7 +22,7 @@ function getModalStyle() {
 const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: theme.spacing.unit * 60,
+    width: theme.spacing.unit * 80,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
@@ -31,8 +31,17 @@ const styles = theme => ({
   cardMedia: {
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit,
-    paddingTop: '75%',
+    paddingTop: '200%',
     backgroundSize: 'contain',
+  },
+  mt2: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  mb2: {
+    marginBottom: theme.spacing.unit * 2,
+  },
+  pl3: {
+    paddingLeft: theme.spacing.unit * 3,
   }
 });
 
@@ -59,28 +68,46 @@ class Details extends React.Component {
             <CircularProgress />
             :
             <div className="modal-inner">
-              <CardMedia
-                className={classes.cardMedia}
-                image={modalBeer && modalBeer.image_url}
-                title={modalBeer ? modalBeer.name : 'Example name'}
-              />
-              <Typography variant="h6">
-                {modalBeer ? modalBeer.name : 'Example name'}
-              </Typography>
-              <Typography variant="subtitle1">
-                {modalBeer ? modalBeer.tagline : 'Example tagline'}
-              </Typography>
               <Grid container>
-                <Grid item xs={12} sm={4} md={4} lg={4}>
-                  <Typography><strong>IBU:</strong> {modalBeer.ibu}</Typography>
+                <Grid item xs={12} sm={4} md={3} lg={3}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={modalBeer && modalBeer.image_url}
+                    title={modalBeer ? modalBeer.name : 'Example name'}
+                  />
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} lg={4}>
-                  <Typography><strong>ABV:</strong> {modalBeer.abv}</Typography>
-                </Grid>
-                <Grid item xs={12} sm={4} md={4} lg={4}>
-                  <Typography><strong>EBC:</strong> {modalBeer.ebc}</Typography>
+                <Grid item xs={12} sm={8} md={9} lg={9} className={classes.pl3}>
+                  <Typography variant="h6">
+                    {modalBeer ? modalBeer.name : 'Example name'}
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.mb2}>
+                    {modalBeer ? modalBeer.tagline : 'Example tagline'}
+                  </Typography>
+                  <Grid container className={classes.mb2}>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
+                      <Typography><strong>IBU:</strong> {modalBeer ? modalBeer.ibu : ''}</Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
+                      <Typography><strong>ABV:</strong> {modalBeer ? modalBeer.abv : ''}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Typography variant="subtitle1"><strong>Tips</strong></Typography>
+                  <Typography className={classes.mb2}>
+                    {modalBeer ? modalBeer.brewers_tips : 'Example tips'}
+                  </Typography>
+                  <Typography variant="subtitle1"><strong>Best served with:</strong></Typography>
+                  {
+                    modalBeer
+                    ?
+                    modalBeer.food_pairing.map((dish, index) => (
+                      <Typography key={index} variant="subtitle1">- {dish}</Typography>
+                    ))
+                    :
+                    ''
+                  }
                 </Grid>
               </Grid>
+              <Typography className={classes.mt2} variant="subtitle1"><strong>You might also like:</strong></Typography>
             </div>
           }
         </div>

@@ -13,7 +13,8 @@ export const mainReducer = (state = initialState, action) => {
           image_url: action.image_url ? action.image_url : 'https://via.placeholder.com/300',
           ibu: action.ibu,
           abv: action.abv,
-          ebc: action.ebc,
+          brewers_tips: action.brewers_tips,
+          food_pairing: action.food_pairing,
         }
       }
     case 'CLOSE_MODAL':

@@ -56,6 +56,14 @@ class App extends React.Component {
   loadBeers = async (page = 1) => {
     try {
       const response = await axios.get('https://api.punkapi.com/v2/beers?per_page=20&page=' + page);
+
+      /* Adding 3 similar beers
+        1. Loop through response.data using forEach, find similar beers(filtering items with the same IBU and ABV), concat them to one array and reduce length to 3
+        2. So we'll have additional object property with 3 similar beers found in each of our Beer objects and can setState them
+        3. Connect them to modalBeer
+        Voila :)
+      */
+
       this.setState(prevState => ({
         isLoading: false,
         isLoadingMore: false,
@@ -75,6 +83,10 @@ class App extends React.Component {
             name: openBeer.name,
             tagline: openBeer.tagline,
             image_url: openBeer.image_url,
+            ibu: openBeer.ibu,
+            abv: openBeer.abv,
+            brewers_tips: openBeer.brewers_tips,
+            food_pairing: openBeer.food_pairing,
           });
           store.dispatch(openModal());
         }

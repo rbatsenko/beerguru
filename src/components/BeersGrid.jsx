@@ -31,6 +31,8 @@ class BeersGrid extends React.Component {
                   ibu={card.ibu}
                   abv={card.abv}
                   ebc={card.ebc}
+                  brewers_tips={card.brewers_tips}
+                  food_pairing={card.food_pairing}
                 />
               </Link>
             </Grow>
